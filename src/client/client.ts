@@ -20,7 +20,9 @@ renderer1.setSize(200, 200);
 renderer2.setSize(200, 200);
 
 // 마우스 드래그로 막 움직임
-new OrbitControls(camera1, renderer1.domElement);
+// 컨트롤스 상수에 집어넣고 change이벤트 리스너로 렌더링 시키면 OrbitControls이 가능하다
+const controls = new OrbitControls(camera1, renderer1.domElement);
+controls.addEventListener("change", render);
 
 const geometry = new THREE.BoxGeometry();
 const material = new THREE.MeshBasicMaterial({
@@ -52,4 +54,5 @@ function render() {
   renderer2.render(scene, camera2);
 }
 
-animate();
+// animate();
+render();
