@@ -1,5 +1,6 @@
 import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
+import Stats from "three/examples/jsm/libs/stats.module";
 
 // #1
 const scene = new THREE.Scene();
@@ -43,16 +44,25 @@ function onWindowResize() {
 function animate() {
   requestAnimationFrame(animate);
 
+  stats.begin();
   cube.rotation.x += 0.01;
   cube.rotation.y += 0.01;
+  stats.end();
 
   render();
+
+  // stats 업데이트
+  // stats.update();
 }
+
+// stats 추가
+const stats = Stats();
+document.body.appendChild(stats.dom);
 
 function render() {
   renderer1.render(scene, camera1);
-  renderer2.render(scene, camera2);
+  // renderer2.render(scene, camera2);
 }
 
-// animate();
+animate();
 render();
