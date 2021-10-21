@@ -1,6 +1,7 @@
 import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import Stats from "three/examples/jsm/libs/stats.module";
+import { GUI } from "three/examples/jsm/libs/dat.gui.module";
 
 // #1
 const scene = new THREE.Scene();
@@ -45,8 +46,8 @@ function animate() {
   requestAnimationFrame(animate);
 
   stats.begin();
-  cube.rotation.x += 0.01;
-  cube.rotation.y += 0.01;
+  // cube.rotation.x += 0.01;
+  // cube.rotation.y += 0.01;
   stats.end();
 
   render();
@@ -58,6 +59,18 @@ function animate() {
 // stats 추가
 const stats = Stats();
 document.body.appendChild(stats.dom);
+
+// GUI 추가
+const gui = new GUI();
+const cubeFolder = gui.addFolder("Cube");
+cubeFolder.add(cube.rotation, "x", 0, Math.PI * 2);
+cubeFolder.add(cube.rotation, "y", 0, Math.PI * 2);
+cubeFolder.add(cube.rotation, "z", 0, Math.PI * 2);
+cubeFolder.open();
+
+const cameraFolder = gui.addFolder("camera");
+cameraFolder.add(camera1.position, "z", 0, 10);
+cameraFolder.open();
 
 function render() {
   renderer1.render(scene, camera1);
