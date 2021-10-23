@@ -11,16 +11,23 @@
         overflow: hidden;
         margin: 0px;
       }
-      canvas {
-        width: 200px;
-        height: 200px;
+      #debug1 {
+        font-family: monospace;
+        font-size: larger;
+        position: absolute;
+        left: 0px;
+        top: 50px;
+        border: 1px solid red;
+        width: 180px;
+        height: 220px;
+        color: white;
+        pointer-events: none;
       }
     </style>
   </head>
 
   <body>
-    <canvas id="testCanvas1"></canvas>
-    <canvas id="testCanvas2"></canvas>
+    <div id="debug1"></div>
     <script type="module" src="bundle.js"></script>
   </body>
 </html>
